@@ -71,7 +71,7 @@ const Chats = () => {
   return (
     <div className="chats-page">
       <div className="nav-bar">
-        <div className="logo-tab">EChat</div>
+        <div className="logo-tab">AChat</div>
         <div onClick={handleLogout} className="logout-tab">
           Logout
         </div>
