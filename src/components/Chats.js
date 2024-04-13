@@ -7,7 +7,7 @@ import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
 const Chats = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
 
@@ -15,12 +15,12 @@ const Chats = () => {
 
   const handleLogout = async () => {
     await auth.signOut();
-    history("/");
+    navigate("/");
   };
 
   useEffect(() => {
     if (!user) {
-      history("/");
+      navigate("/");
       return;
     }
 
@@ -34,7 +34,7 @@ const Chats = () => {
     axios
       .get("https://api.chatengine.io/users/me", {
         headers: {
-          "project-id": "8bfdc7a3-ddd3-4efa-881f-6d9ac03387fc",
+          "project-id": process.env.REACT_APP_CHAT_ENGINE_ID,
           "user-name": user.email,
           "user-secret": user.uid,
         },
@@ -54,7 +54,7 @@ const Chats = () => {
           axios
             .post("https://api.chatengine.io/users", formdata, {
               headers: {
-                "private-key": "85a934e1-28db-478a-be65-552cb057ae31",
+                "private-key": process.env.REACT_APP_CHAT_ENGINE_KEY,
               },
             })
             .then(() => {
@@ -65,7 +65,7 @@ const Chats = () => {
             });
         });
       });
-  }, [user, history]);
+  }, [user, navigate]);
 
   if (!user || loading) return "Loading...";
   return (
@@ -79,7 +79,7 @@ const Chats = () => {
 
       <ChatEngine
         height="calce(100vh - 66px)"
-        projectID="8bfdc7a3-ddd3-4efa-881f-6d9ac03387fc"
+        projectID={process.env.REACT_APP_CHAT_ENGINE_ID}
         userName={user.email}
         userSecret={user.uid}
       />
