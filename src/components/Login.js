@@ -22,14 +22,14 @@ const Login = () => {
         </div>
         <br />
         <br />
-        <div
-          className="login-button facebook"
-          onClick={() =>
-            signInWithRedirect(auth, new firebase.auth.FacebookAuthProvider())
-          }
-        >
-          <FacebookOutlined /> Sign In with Facebook {/* Fix the typo */}
-        </div>
+        {/* <div
+          // className="login-button facebook"
+          // onClick={() =>
+          //   signInWithRedirect(auth, new firebase.auth.FacebookAuthProvider())
+          // }
+        > */}
+        {/* <FacebookOutlined /> Sign In with Facebook  */}
+        {/* </div> */}
       </div>
     </div>
   );
